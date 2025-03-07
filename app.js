@@ -5,21 +5,29 @@ let contador = listaAmigos.length-1
 function asignarTextoElemento(elemento, texto) {
     let elementoHTML = document.getElementById(elemento);
     elementoHTML.innerHTML = texto;
-    return;
 }
 
 function agregarAmigo() {
-    let amigoDeUsuario = (document.getElementById('amigo').value);
-    let amigoUsuario = document.createElement("li")
-    amigoUsuario.textContent = amigoDeUsuario
+    let amigoDeUsuario = document.getElementById('amigo').value;
 
     if (amigoDeUsuario == "") {
         alert("Porfavor, inserte algun nombre.")
     }
     else {
         listaAmigos.push(amigoDeUsuario)
-        document.getElementById("listaAmigos").appendChild(amigoUsuario)
+        mostrarLista()
         limpiarCaja()
+    }
+}
+
+function mostrarLista() {
+    let lista = document.getElementById("listaAmigos");
+    lista.innerHTML = "";
+    let pos = 0
+
+    while(pos < listaAmigos.length) {
+        lista.innerHTML += "<li>" + listaAmigos[pos] + "</li>"
+        pos++
     }
 }
 
@@ -32,7 +40,6 @@ function sortearAmigo() {
     } 
     else {
         console.log(resultado)
-        alert(listaAmigos[resultado])
         asignarTextoElemento("resultado", listaAmigos[resultado]);
     }
 }
